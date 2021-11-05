@@ -7,12 +7,12 @@ Setup `config/config.properties` file
 
 ## Compiling
 ```bash
-javac -d bin src/Server.javax
+javac -d bin Server.java
 ```
 
 ## Running 
 ```bash
-java -classpath bin/ server.Server 8000
+java -classpath bin/ Server 8000
 ```
 
 ## TODO
