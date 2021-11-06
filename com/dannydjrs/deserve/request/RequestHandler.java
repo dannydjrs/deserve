@@ -4,7 +4,6 @@ import com.dannydjrs.deserve.controller.Controller;
 import com.dannydjrs.deserve.controller.ControllerFactory;
 import com.dannydjrs.deserve.response.Response;
 import com.dannydjrs.deserve.response.NotImplementedResponse;
-import com.dannydjrs.deserve.request.Request;
 import java.net.Socket;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -19,22 +18,23 @@ public class RequestHandler implements Runnable {
     @Override
     public void run() {
         try {
-            Request request = Request.build(new BufferedReader(
-                new InputStreamReader(client.getInputStream())
-            ));
+            Request request = RequestBuilder.build(new BufferedReader(
+                new InputStreamReader(client.getInputStream()
+            )));
+            
             System.out.println(String.format(
                 "Request: %s %s %s", 
-                request.get("METHOD"),
-                request.get("URL"),
-                request.get("PROTOCOL")
+                request.getMethod(),
+                request.getUrl(),
+                request.getProtocol()
             ));
         
-            Controller controller = ControllerFactory.build(request);
+            Controller controller = ControllerFactory.create(request);
 
             Response response;
-            if (request.get("METHOD").equals("GET")) {
+            if (request.getMethod().equals("GET")) {
                 response = controller.get(request);
-            } else if (request.get("METHOD").equals("POST")) {
+            } else if (request.getMethod().equals("POST")) {
                 response = controller.post(request);
             } else {
                 response = new NotImplementedResponse();

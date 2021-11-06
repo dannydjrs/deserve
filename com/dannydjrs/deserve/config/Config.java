@@ -1,30 +1,26 @@
 package com.dannydjrs.deserve.config;
 
-import java.util.Objects;
+import java.io.InputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 public class Config {
-    public static boolean DEBUG;
-    public static String ROOT;
-    public static String SERVER_NAME;
-    public static String SERVER_VERSION;
+    private static Properties prop;
 
-    public static boolean is_valid() {
-        if (Objects.isNull(Config.DEBUG)) {
-            return false;
-        }
+    public static void setup(InputStream input) throws IOException {
+        prop = new Properties();
+        prop.load(input);
+    }
 
-        if (Objects.isNull(Config.ROOT)) {
-            return false;
-        }
+    public static String get(String property) {
+        return prop.getProperty(property);
+    }
 
-        if (Objects.isNull(Config.SERVER_NAME)) {
-            return false;
-        }
+    public static int getInt(String property) {
+        return Integer.parseInt(get(property));
+    }
 
-        if (Objects.isNull(Config.SERVER_VERSION)) {
-            return false;
-        }
-
-        return true;
+    public static boolean getBoolean(String property) {
+        return Boolean.parseBoolean(get(property));
     }
 }

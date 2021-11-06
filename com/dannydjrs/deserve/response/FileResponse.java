@@ -1,6 +1,5 @@
 package com.dannydjrs.deserve.response;
 
-import com.dannydjrs.deserve.response.Response;
 import com.dannydjrs.deserve.config.Config;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,7 +25,7 @@ public class FileResponse implements Response {
         );
 
         out.println("HTTP/1.1 200 OK");
-        out.println("Server: " + Config.SERVER_NAME + "/" + Config.SERVER_VERSION);
+        out.println("Server: " + Config.get("server.name") + "/" + Config.get("server.version"));
         out.println("Date: " + new Date());
         out.println("Content-type: " + this.content_type);
         out.println("Content-length: " + (int)this.file.length());

@@ -2,14 +2,39 @@ package com.dannydjrs.deserve.request;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.io.IOException;
-import java.io.BufferedReader;
 
 public class Request {
+    private String method;
+    private String url;
+    private String protocol;
     private Map<String, String> map;
 
     public Request() {
         this.map = new HashMap<String, String>();
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    public String getMethod() {
+        return this.method;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return this.url;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+
+    public String getProtocol() {
+        return this.protocol;
     }
 
     public void set(String key, String value) {
@@ -18,21 +43,5 @@ public class Request {
 
     public String get(String key) {
         return this.map.get(key);
-    }
-
-    public static Request build(BufferedReader raw) throws IOException {
-        Request request = new Request();
-
-        String line;
-        line = raw.readLine();
-        request.set("METHOD", line.split(" ")[0]);
-        request.set("URL", line.split(" ")[1]);
-        request.set("PROTOCOL", line.split(" ")[2]);
-
-        while ((line = raw.readLine()) != null && !line.isEmpty()) {
-            request.set(line.split(": ")[0], line.split(": ")[1]);
-        }
-
-        return request;
     }
 }
