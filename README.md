@@ -7,15 +7,19 @@ Setup `config/config.properties` file
 
 ## Compiling
 ```bash
-javac -d bin Server.java
+mvn clean
+mvn compile
+mvn package
 ```
 
-## Running 
+## Running 
 ```bash
-java -classpath bin/ Server 8000
+java -jar target/deserve-0.1.0.jar 8080
 ```
 
 ## TODO
 1. Make file for java
 2. Make framework
 3. Remove Factory in replacement for user defined urls
+4. Separate out header creation for responses
+
