@@ -56,7 +56,6 @@ public class StatusResponse implements Response {
         out.println("");
         out.flush();
         
-        System.out.println("Seeing if file configured");
         if (this.configManager.get("config", String.format("status.%s", this.status)) == null) {
             System.out.println("File not configured");
             out.close();
@@ -69,7 +68,6 @@ public class StatusResponse implements Response {
                 this.configManager.get("config", String.format("status.%s", this.status)
         )));
         if (!file.exists() || file.isDirectory()) {
-            System.out.println("File not exists");
             out.close();
             return;
         }
