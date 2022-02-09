@@ -2,10 +2,7 @@ package com.dannydjrs.deserve.request;
 
 import com.dannydjrs.deserve.controller.Controller;
 import com.dannydjrs.deserve.controller.ControllerFactory;
-import com.dannydjrs.deserve.objectmanager.ObjectManager;
 import com.dannydjrs.deserve.response.Response;
-import com.dannydjrs.deserve.response.StatusResponse;
-import com.dannydjrs.deserve.response.StatusResponseFactory;
 
 import java.net.Socket;
 import java.io.BufferedReader;
